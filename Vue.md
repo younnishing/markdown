@@ -1,6 +1,6 @@
 # Vue 笔记
 
-## 1.Vue 模板
+## 1.Vue 实例
 
 ```javascript
 new Vue({
@@ -8,6 +8,9 @@ new Vue({
     data: {
         name: 'younni',
         url: 'http://www.younnishing.cn'
+    },
+  	methods: {
+      	firstMethod() {...}
     }
 });
 //或者使用$mount的方法挂载
@@ -52,8 +55,9 @@ data: function () {
 >
 > 指令
 > ```javascript
-> v-bind:  //单向数据绑定,数据仅从data流向页面,简化为:value=""
+> v-bind:  //单向数据绑定,数据仅从data流向页面,v-bind:value=""简化为:value=""
 > v-model: //双向数据绑定,只能应用在表单元素value值中,简化为v-model=""
+> v-on:    //事件绑定，v-on:click=""简化为@click=""
 > ```
 
 ## 3.MVVM模型:前端主流框架模型
@@ -74,7 +78,7 @@ Object.defineProperty(obj, prop, descriptor)
 
 descriptor:
 
-```
+```javascript
 {
 	value: "",
 	enumerable: true&false, //Default false，是否可以被枚举（遍历）
@@ -82,5 +86,50 @@ descriptor:
 	configurable: true&false, //Default false，是否可以被删除
 }
 ```
-test 10.46
+
+> [!NOTE]
+>
+> 数据代理：通过一个对象代理对另一个对象属性的操作
+
+#### 在Vue中的数据代理
+
+通过vm对象代理data中属性（getter/setter）
+
+开发者直接操作vm，vm自动操作data中的属性
+
+通过Object.defineProperty()来吧data的内容添加到vm上
+
+能够更加方便的操作data的数据，如果没有数据代理，
+
+```javascript
+{{_data.name}}
+{{_data.url}}
+```
+
+所有的值都改加上`_data`才能操作
+
+## 5.事件处理
+
+```javascript
+<button @click="Event1">Click1</button>    //不传参
+<button @click="Event2(2)">Click2</button> //传参
+
+  ...
+        methods:{
+            Event1(){
+                alert('ClickEvent1');
+            },
+            Event2(number){
+                alert('ClickEvent' + number);
+            }
+        }
+```
+
+#### 事件修饰符
+
+```javascript
+@click.prevent="" //阻止默认事件
+@click.stop="" //阻止事件冒泡
+@click.once="" //事件只触发一次
+```
 
