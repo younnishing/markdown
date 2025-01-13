@@ -82,4 +82,5 @@ descriptor:
 	configurable: true&false, //Default false，是否可以被删除
 }
 ```
+test 10.46
 
