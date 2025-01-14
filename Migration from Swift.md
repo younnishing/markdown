@@ -1,5 +1,5 @@
-# My `Swift` Note #
-***by Younnishing Baak***
+# `Swift`  #
+***by Younni Baak***
  ***
  ***2022.11.11***
  ***
