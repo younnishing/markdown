@@ -7,7 +7,7 @@ new Vue({
     el: '#root',
     data: {
         name: 'younni',
-        url: 'http://www.younnishing.cn'
+        url: 'http://develop.younnishing.cn'
     },
   	methods: {
       	firstMethod() {...}
@@ -17,7 +17,7 @@ new Vue({
 const vm = new Vue({
   data: {
         name: 'younni',
-        url: 'http://www.younnishing.cn'
+        url: 'http://develop.younnishing.cn'
     }
 });
 vm.$mount('#root');
