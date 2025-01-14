@@ -133,3 +133,40 @@ descriptor:
 @click.once="" //事件只触发一次
 ```
 
+## 6.键盘事件
+
+以keyup事件为例,实现通过键盘控制div移动
+
+```javascript
+<div id="item">
+      <input  @keyup="move">
+      1
+</div>
+...
+methods{
+		 move(e){
+                const item = document.getElementById("item");
+                const currentRight = parseInt(item.style.marginLeft) || 0;
+                const currentTop = parseInt(item.style.marginTop) || 0;
+                switch (e.keyCode){
+                    case 39:item.style.marginLeft = `${currentRight + 50}px`;break;
+                    case 37:item.style.marginLeft = `${currentRight - 50}px`;break;
+                    case 38:item.style.marginTop = `${currentTop - 50}px`;break;
+                    case 40:item.style.marginTop = `${currentTop + 50}px`;break;
+                }
+
+                console.log(e.keyCode,e.key);
+            },
+}
+```
+
+同时，Vue提供了9个常用的按键别名
+
+分别为`enter` `delete` `esc` `space` `tab` `up` `down` `left` `right` 
+
+> [!TIP]
+>
+> 1. `delete` 同时适用于backspace与delete
+> 2. 由于Tab键的特殊性，建议与keydown事件配合使用
+
+
