@@ -168,5 +168,31 @@ methods{
 >
 > 1. `delete` 同时适用于backspace与delete
 > 2. 由于Tab键的特殊性，建议与keydown事件配合使用
+系统修饰键 `ctrl` `alt` `shift` `meta` 
+
+> [!TIP]
+>
+> 可以搭配其他按键使用 `@keyup.ctrl.up="up"` 
+>
+> 搭配keyup事件使用时必须搭配其他按键，当其他按键抬起时，才能触发事件
+
+## 7.计算属性
+
+> [!TIP]
+>
+> Vue建议不要使用过于复杂的插值语法，比如
+>
+> ```javascript
+> {{
+>   fullName.split(' ').map(function (word) {
+>     return word[0].toUpperCase() + word.slice(1)
+>   }).join(' ')
+> }}
+> ```
+> 而是使用计算属性或者方法
+
+为方便使用，计算属性拥有缓存，其get()方法只会被请求一次
+
+当所依赖的数据发生变化时会重新调用get()
 
 
