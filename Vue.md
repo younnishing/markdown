@@ -195,4 +195,73 @@ methods{
 
 当所依赖的数据发生变化时会重新调用get()
 
-111111111
+
+同时，计算属性也有set()方法，由于计算属性的性质，此方法并不常用
+
+那么推荐简写形式：
+
+```javascript
+data: {
+  firstName: "Younni",
+  lastName: "Baak"
+},
+computed:{
+  fullName(){
+    return this.firstName + '-' + this.lastName;
+  }
+}
+```
+
+
+
+## 8.监视属性(侦听属性)
+
+在 Vue 中，watch 是一个用于监听和响应数据变化的选项。它允许你对数据的变化进行处理。
+
+```javascript
+watch: {
+  propertyName: {
+    handler(newValue, oldValue) {
+      // 数据变化时的回调
+    },
+    immediate: true, // 是否在初始加载时立即执行
+    deep: true       // 是否深度监听对象内部值的变化
+  }
+}
+```
+
+如果监听中不需要配置项 `immediate` `deep` 那么可以简写为：
+
+```javascript
+watch:{
+	propertyName(newValue, oldValue){
+		// 数据变化时的回调
+	}
+}
+```
+
+也可以调用`vm.$watch()` 来实现监听属性
+
+```javascript
+vm.$watch('propertyName', {
+  handler(newValue, oldValue) {
+      // 数据变化时的回调
+    },
+    immediate: true, // 是否在初始加载时立即执行
+    deep: true       // 是否深度监听对象内部值的变化
+});
+//同样，在不需要配置项的时候可以简写为：
+vm.$watch('property', function(newValue, oldValue) {
+      // 数据变化时的回调
+    });
+```
+
+> [!WARNING]
+>
+> 再次强调，由Vue管理的函数不要写成箭头函数！`this` 会指向window而不是Vue
+>
+> 同时，不被Vue所管理的对象最好写成箭头函数，这样`this` 才能指向Vue，
+>
+> 比如setTimeout()、ajax的回调函数
+
+
