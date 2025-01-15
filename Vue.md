@@ -264,4 +264,23 @@ vm.$watch('property', function(newValue, oldValue) {
 >
 > 比如setTimeout()、ajax的回调函数
 
+## 9.条件渲染
+
+```html
+<h1 v-show='false'>Hello</h1>
+<h1 v-if='false'>Hello</h1>
+```
+
+两种控制显示隐藏的区别在于`v-show` 是通过控制元素的`style.display` 来实现的；
+
+而`v-if` 是通过操作元素的DOM，将元元素直接删除
+
+如果变化的频率很高建议使用`v-show` 
+
+同理，为了提高效率，在使用`v-if` 时建议搭配`v-else-if`、`v-else`使用
+
+> [!WARNING]
+>
+> `v-if` 搭配`v-else-if`、`v-else`使用时，请勿打断！
+
 
