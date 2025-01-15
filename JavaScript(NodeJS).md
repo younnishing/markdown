@@ -1,4 +1,4 @@
-Migrating from JavaScript(NodeJS)
+# Migrating from JavaScript(NodeJS)
 ```javascript
 const db = require('../db/users');
 //Use for encryption user's password
