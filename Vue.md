@@ -110,7 +110,7 @@ descriptor:
 
 ## 5.事件处理
 
-```javascript
+```html
 <button @click="Event1">Click1</button>    //不传参
 <button @click="Event2(2)">Click2</button> //传参
 
