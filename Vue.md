@@ -282,5 +282,65 @@ vm.$watch('property', function(newValue, oldValue) {
 > [!WARNING]
 >
 > `v-if` 搭配`v-else-if`、`v-else`使用时，请勿打断！
+## 10.列表渲染
+
+###### 数组遍历
+
+```html
+<ul>
+    <li v-for="p in persons" :key="p.id">
+        {{p.id}} - {{p.name}} - {{p.age}}
+    </li>
+</ul>
+...
+persons: [
+	{id: '001', name: 'Jack', age: 18},
+	{id: '002', name: 'Tom', age: 16},
+	{id: '003', name: 'Younni', age: 20}
+]
+```
+
+`v-for`还支持第二个参数
+
+```html
+<li v-for="(p,index) in persons" :key="p.id">
+    {{index}} - {{p.name}} - {{p.age}}
+</li>
+```
+
+同样地，你也可以使用`index`作为`key`值，但不建议这样做，`p.id`对于每一个p是其**唯一标识**
+
+> [!TIP]
+>
+> 在虚拟DOM的**diff算法**中，虚拟DOM一致，真实DOM复用，以`p.id`为`key`值无论什么时候都可以保证其虚拟DOM一致，**保证效率**；以`index`作为`key`值，在某些特殊情况下(如逆序添加等破坏顺序的操作)，会造成没有必要的真实DOM更新
+>
+> 在不指定`key`的情况下，Vue会添加一个默认的 `:key = index`
+
+###### 对象遍历
+
+```html
+<ul>
+    <li v-for="(value, key) in personObj" :key="key">
+        {{key}} - {{value}}
+    </li>
+</ul>
+...
+ personObj: {
+	name: 'younni',
+	age: 20,
+}
+```
+
+###### 字符串遍历
+
+```html
+<ul>
+    <li v-for="(char, index) in str" :key="index">
+        {{index}} - {{char}}
+    </li>
+</ul>
+
+str: 'younnishing'
+```
 
 
