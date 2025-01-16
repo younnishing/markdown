@@ -60,6 +60,18 @@ data: function () {
 > v-on:    //事件绑定，v-on:click=""简化为@click=""
 > ```
 
+`v-model`在表单提交中的小技巧
+
+1.在绑定`radio` `checkbox`等无法输入的input时，注意要给定对应value值
+
+2.`checkbox`默认返回boolen值，注意其`v-model='property'`中property应为一个**数组**
+
+3.需要收集的数据为`number`时可以使用`v-model.number`修饰符
+
+4.`.lazy`修饰符可以在**失去焦点**时再提交
+
+5.`.trim`可以忽略字符串**前后**的空格
+
 ## 3.MVVM模型:前端主流框架模型
 
 M：Model ,data 中的数据
@@ -168,7 +180,8 @@ methods{
 >
 > 1. `delete` 同时适用于backspace与delete
 > 2. 由于Tab键的特殊性，建议与keydown事件配合使用
-系统修饰键 `ctrl` `alt` `shift` `meta` 
+
+ 系统修饰键 `ctrl` `alt` `shift` `meta` 
 
 > [!TIP]
 >
@@ -194,7 +207,6 @@ methods{
 为方便使用，计算属性拥有缓存，其get()方法只会被请求一次
 
 当所依赖的数据发生变化时会重新调用get()
-
 
 同时，计算属性也有set()方法，由于计算属性的性质，此方法并不常用
 
@@ -282,6 +294,7 @@ vm.$watch('property', function(newValue, oldValue) {
 > [!WARNING]
 >
 > `v-if` 搭配`v-else-if`、`v-else`使用时，请勿打断！
+
 ## 10.列表渲染
 
 ###### 数组遍历
@@ -342,5 +355,3 @@ persons: [
 
 str: 'younnishing'
 ```
-
-
