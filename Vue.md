@@ -51,16 +51,18 @@ data: function () {
  <a :href="url">click</a>
 ```
 
-> [!IMPORTANT]
->
-> 指令
-> ```javascript
-> v-bind:  //单向数据绑定,数据仅从data流向页面,v-bind:value=""简化为:value=""
-> v-model: //双向数据绑定,只能应用在表单元素value值中,简化为v-model=""
-> v-on:    //事件绑定，v-on:click=""简化为@click=""
-> ```
+###### 常见指令
+ ```html
+ v-bind:  <!-- 单向数据绑定,数据仅从data流向页面,v-bind:value=""简化为:value="" -->
+ ```
+```html
+v-model: <!-- 双向数据绑定,只能应用在表单元素value值中,简化为v-model="" -->
+```
+```html
+v-on:    <!-- 事件绑定，v-on:click=""简化为@click="" -->
+```
 
-`v-model`在表单提交中的小技巧
+`v-model:`在表单提交中的小技巧
 
 1.在绑定`radio` `checkbox`等无法输入的input时，注意要给定对应value值
 
@@ -71,6 +73,29 @@ data: function () {
 4.`.lazy`修饰符可以在**失去焦点**时再提交
 
 5.`.trim`可以忽略字符串**前后**的空格
+
+###### 其他内置指令
+
+```html
+v-text:/v-html: <!-- 相当于innerText/innerHTML -->
+```
+```html
+v-cloak   <!-- 此指令没有值，该指令会在Vue接管容器时立刻被移除,搭配css使用，可以防止在Vue未接管容器时，Vue模板内容显示在页面上 -->
+style{
+	[v-cloak]{
+		display: none;
+	}
+}
+```
+
+```html
+v-once   <!-- 此指令没有值,仅在页面初次动态渲染时加载一次，后被视为静态内容 -->
+```
+```html
+v-pre    <!-- 此指令没有值,Vue会跳过有该指令的节点不去编译，用于提升效率 -->
+```
+
+
 
 ## 3.MVVM模型:前端主流框架模型
 
