@@ -95,7 +95,58 @@ v-once   <!-- 此指令没有值,仅在页面初次动态渲染时加载一次�
 v-pre    <!-- 此指令没有值,Vue会跳过有该指令的节点不去编译，用于提升效率 -->
 ```
 
+###### 自定义指令
 
+Vue也允许自定义指令，并且有两种方式
+
+1. 以函数式定义
+
+```html
+<span v-directiveName='value'></span>
+<script>
+  const vm = new Vue({
+    data: {
+      value: ''
+    },
+    directives{
+    	directiveName(element, binding){
+    		element.innerText = binding.value;
+    		//自定义操作
+  		}
+    }
+  });
+</script>
+```
+
+2.以对象式来定义
+
+```html
+<span v-directiveName='value'></span>
+<script>
+  const vm = new Vue({
+    data: {
+      value: ''
+    },
+    directives{
+    	directiveName:{
+    		bind(element, binding){
+    			element.innerText = binding.value;
+  			},//当指令与元素绑定时调用
+    		inserted(element, binding){
+          //如果有需求，比如
+          element.focus();
+          element.parentElement;
+        },//当元素被插入到页面时调用
+        update(element, binding){
+          element.innerText = binding.value;
+        }//当所在模版被重新解析时调用
+  		}
+    }
+  });
+</script>
+```
+
+如果在对象式写法中，没有对应的`inserted()`需求，那么建议写成函数式
 
 ## 3.MVVM模型:前端主流框架模型
 
