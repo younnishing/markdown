@@ -195,7 +195,7 @@ module.exports = {
 
 You can find detailed configuration in https://cli.vuejs.org/config/#vue-config-js
 
-#### $ref
+## $ref
 
 You can use `ref` to get info of element or sub-component.(Used instead of  `id`)
 
@@ -220,7 +220,7 @@ So, Vue provides `$ref` to instead of it.
 >
 > If you use  `document.getElementById` to select Vue Components, it will return the DOM of it.
 
-#### 3 Methods to Recive Data
+## 3 Methods to Recive Data
 
 1.Simple declaration
 
@@ -257,7 +257,7 @@ props: {
 }
 ```
 
-#### mixin
+## mixin
 
 If you have some **same** code snippet, use mixin will make your code reduced code reuse.
 
