@@ -326,3 +326,132 @@ Vue.mixin(mixin1);
 Vue.mixin(mixin2);
 ```
 
+> [!TIP]
+>
+> Because VueorHTML have a lot of Keywords, your components/methods/variable names should be written in large hump form.
+
+## `$bus`
+
+First, open Global Event Bus in `main.js`
+
+```javascript
+new Vue({
+  render: h => h(App),
+  beforeCreate() {
+    Vue.prototype.$bus = this;
+  }
+}).$mount('#app')
+```
+
+Use `this.$bus.$emit()` to send data
+
+```javascript
+this.$bus.$emit(eventName, data);
+```
+
+Use `this.$bus.$on()` to receive data
+
+```javascript
+this.$bus.$on(eventName, () => {
+  ...
+});
+```
+
+## Router
+
+router
+
+  └──`index.js`
+
+```javascript
+export default new VueRouter({
+    routes: [
+        {
+            path: '/',
+            redirect: '/about'
+        },
+        {
+            path: '/about',
+            component: RouterAbout
+        },
+        {
+            path: '/home',
+            component: RouterHome
+        },
+        {
+            path: '/nest',
+            component: RouterNest,
+            children: [
+                {
+                    path: '',
+                    redirect: 'news'
+                },
+                {
+                    path: 'message',
+                    component: NestMessage,
+                    children: [
+                        {
+                            name: 'detail',
+                            path: 'detail',
+                            component: MessageDetail
+                        }
+                    ]
+                },
+                {
+                    path: 'news',
+                    component: NestNews
+                }
+            ]
+        }
+    ]
+});
+```
+
+`path`: The path of the component.
+
+`name`: Name of this route.
+
+`chileren`: All Child-Route of this route. [Array]
+
+The path of Father-Route need a '/', its Child-Route don't add '/'.
+
+Replace `<a></a>` with `<router-link></router-link>`, `href=""` with `to=""`.
+
+Otherwise, `to=""` can use Object.
+
+```javascript
+:to="{
+  name: 'detail',
+  query: { id: m.id, title: m.title }
+}">
+```
+
+This form is recommended when parameters need to be passed.
+
+Use `<router-view></router-view>` to display component.
+
+You can use `replace` to overwrite history.
+
+When you switch components by router, previous component will be destroyed.
+
+If you have a real DOM need reserve or not be destroyed, you can use `<keep-alive></keep-alive>`. And you can appoint the component needs reserve.
+
+```html
+<keep-alive include="ComponentName">
+  <router-view></router-view>
+</keep-alive>
+```
+
+> [!CAUTION]
+>
+> `include="ComponentName"` It uses the component name.
+
+If you have more than one components need to reserve, you can use `Array` to define `include`.
+
+```html
+<keep-alive 
+      :include="['Component1', 'Component2', ...]">
+  <router-view></router-view>
+</keep-alive>
+```
+
